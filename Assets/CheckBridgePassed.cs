@@ -1,21 +1,26 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CheckBridgePassed : MonoBehaviour
 {
-    private GameObject Entrance1;
-    private GameObject Entrance2;
-    
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public CheckBridgePassed OppositeEntrance;
+    public static GameObject LastEntrance;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider other)
     {
-        if 
+        if (LastEntrance != null && LastEntrance == OppositeEntrance.gameObject)
+        {
+            Destroy(transform.parent.gameObject);
+        }
+        
+        /*if (OppositeEntrance.enabled)
+        {
+            Destroy(this);
+        }*/
+
+        LastEntrance = this.gameObject;
     }
 }
